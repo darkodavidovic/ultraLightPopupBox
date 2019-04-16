@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>First website</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .nav {
+        width: 350px;
+        margin: auto;
+        border: 1px solid red;
+    }
+
+    .popupClosed {
+        display: none;
+    }
+
+    .popupShow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 350px;
+        height: 150px;
+        background-color: rgb(59, 59, 59);
+        border: 10px solid grey;
+        border-radius: 20px;
+        transform: translate(-50%, -50%);
+        opacity: 1;
+        text-align: center;
+        transform-origin: top;
+        animation: open 0.1s linear forwards;
+    }
+
+    @keyframes open {
+        0% {
+            /* extend this margin if your box is wider (50% of width)*/
+            margin-left: -175px;
+            transform: scale(0.3) translate(-50%, -50%);
+            opacity: 0.3;
+        }
+
+        100% {
+            transform: scale(1) translate(-50%, -50%);
+            opacity: 1;
+        }
+
+    }
+
+    .close {
+        float: right;
+        margin-right: 5px;
+        margin-top: 5px;
+        font-size: 20px;
+        color: white;
+        width: 25px;
+        border: 1px solid white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    h2 {
+        color: lightseagreen;
+        padding-top: 40px;
+    }
+
+    input {
+        margin: 50px;
+    }
+</style>
+
+<body>
+    <header class="nav">
+        <input class="input" placeholder="Enter some text to show" type="text"><button
+            onclick="showData()">Show</button>
+        <br /> <br />
+    </header>
+
+    <div id="popup" class="popupClosed">
+        <div class="close" onclick="closeBox()">X</div>
+        <h2 class="textData"></h2>
+    </div>
+
+    <script>
+        var popup = document.getElementById("popup");
+        var input = document.querySelector(".input");
+        var textData = document.querySelector(".textData");
+
+        function showData() {
+            textData.innerHTML = input.value;
+            popup.classList.remove("popupClosed");
+            popup.classList.add("popupShow");
+        }
+
+        function closeBox() {
+            popup.classList.remove("popupShow");
+            popup.classList.add("popupClosed");
+        }
+    </script>
+</body>
+
+</html>
